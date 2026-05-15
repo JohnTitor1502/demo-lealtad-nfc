@@ -1,0 +1,234 @@
+/* =========================================================
+   DR. PIES — Color & Type Tokens
+   Brand: Clínica podiátrica · Tijuana, México
+   ========================================================= */
+
+/* ---------- Fonts ----------
+   Loaded from Google Fonts. If you have licensed copies of these
+   webfonts, drop them into /fonts and replace these imports.
+   - Montserrat   → display / headings (authority, uppercase setting)
+   - Open Sans    → body copy (long-form medical content)
+   - Bree Serif   → italic display accent (closest free match to the
+                    bespoke italic-slab wordmark in the Dr. Pies logo).
+                    DO NOT re-set "Dr. Pies" in this font — always use
+                    the logo PNG/SVG.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Bree+Serif&display=swap');
+
+:root {
+  /* ============== COLOR — RAW PALETTE ============== */
+
+  /* Brand reds — sampled from the logo and brand photography */
+  --dp-red-700:    #8E0000;   /* deepest — pressed, focus rings on red surfaces */
+  --dp-red-600:    #B40000;   /* hover for primary red                          */
+  --dp-red-500:    #C80000;   /* PRIMARY · wordmark red, primary buttons        */
+  --dp-red-400:    #EF3340;   /* accent · used in photography overlays, badges  */
+  --dp-red-300:    #FF6A6A;   /* soft accent · subtle dividers, decorative      */
+  --dp-red-50:     #FFF1F1;   /* wash · alert backgrounds, hero panels          */
+
+  /* Neutral ramp — warm, slightly desaturated to feel clinical not sterile */
+  --dp-ink:        #1A1A1A;   /* primary text on white                          */
+  --dp-ink-soft:   #323232;   /* foot-icon ink, secondary heading color         */
+  --dp-slate-700:  #4A4A4A;   /* body text                                      */
+  --dp-slate-500:  #6E6E6E;   /* secondary copy, captions                       */
+  --dp-slate-300:  #B8B8B8;   /* dividers, disabled                             */
+  --dp-slate-200:  #DCDCDC;   /* hairline borders                               */
+  --dp-slate-100:  #EFEFEF;   /* card surfaces on white                         */
+  --dp-slate-50:   #F7F7F5;   /* page wash                                      */
+  --dp-white:      #FFFFFF;
+
+  /* Semantic — clinical signals (use sparingly; the brand is mono-red) */
+  --dp-success:    #2E8B57;   /* "cita confirmada", positive lab results        */
+  --dp-warning:    #E08A00;   /* atención required                              */
+  --dp-info:       #1F6FB2;   /* informational notes                            */
+
+  /* ============== COLOR — SEMANTIC ============== */
+  --color-bg:              var(--dp-white);
+  --color-bg-soft:         var(--dp-slate-50);
+  --color-bg-elevated:     var(--dp-white);
+  --color-bg-inverse:      var(--dp-ink);
+
+  --color-fg:              var(--dp-ink);
+  --color-fg-muted:        var(--dp-slate-700);
+  --color-fg-subtle:       var(--dp-slate-500);
+  --color-fg-inverse:      var(--dp-white);
+  --color-fg-on-red:       var(--dp-white);
+
+  --color-brand:           var(--dp-red-500);
+  --color-brand-hover:     var(--dp-red-600);
+  --color-brand-active:    var(--dp-red-700);
+  --color-brand-soft:      var(--dp-red-50);
+  --color-brand-accent:    var(--dp-red-400);
+
+  --color-border:          var(--dp-slate-200);
+  --color-border-strong:   var(--dp-slate-300);
+  --color-divider:         var(--dp-slate-100);
+
+  --color-focus-ring:      var(--dp-red-500);
+
+  /* ============== TYPE — FAMILIES ============== */
+  --font-display:  'Montserrat', system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body:     'Open Sans', system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-accent:   'Bree Serif', Georgia, serif;       /* italic display moments only */
+  --font-mono:     ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  /* ============== TYPE — SCALE ============== */
+  --fs-12:  0.75rem;   /* 12 — legal, badges          */
+  --fs-14:  0.875rem;  /* 14 — captions, eyebrow      */
+  --fs-16:  1rem;      /* 16 — body base              */
+  --fs-18:  1.125rem;  /* 18 — body large             */
+  --fs-20:  1.25rem;   /* 20 — lead paragraph         */
+  --fs-24:  1.5rem;    /* 24 — h4                     */
+  --fs-30:  1.875rem;  /* 30 — h3                     */
+  --fs-36:  2.25rem;   /* 36 — h2                     */
+  --fs-48:  3rem;      /* 48 — h1                     */
+  --fs-64:  4rem;      /* 64 — display / hero         */
+
+  --lh-tight:  1.1;
+  --lh-snug:   1.25;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.65;
+
+  --tracking-tight:  -0.01em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.04em;
+  --tracking-eyebrow: 0.18em;   /* "EXPERTOS EN PIES" all-caps eyebrow look      */
+
+  /* ============== SPACING ============== */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ============== RADII ============== */
+  --radius-xs:  2px;
+  --radius-sm:  4px;
+  --radius-md:  6px;    /* default — buttons, inputs, cards */
+  --radius-lg:  12px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;  /* used for hero photography motifs */
+
+  /* ============== SHADOWS ============== */
+  --shadow-xs: 0 1px 2px rgba(26,26,26,0.06);
+  --shadow-sm: 0 2px 6px rgba(26,26,26,0.08);
+  --shadow-md: 0 6px 18px rgba(26,26,26,0.10);
+  --shadow-lg: 0 18px 40px rgba(26,26,26,0.14);
+  --shadow-red: 0 8px 24px rgba(200,0,0,0.22);     /* primary CTA lift */
+
+  /* ============== LAYOUT ============== */
+  --container-max: 1180px;
+  --container-pad: clamp(20px, 4vw, 48px);
+}
+
+/* ============== SEMANTIC ELEMENT STYLES ==============
+   Apply these via the matching utility class OR by extending. */
+
+.dp-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-64);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-fg);
+}
+
+.dp-h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-48);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-fg);
+}
+
+.dp-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-36);
+  line-height: var(--lh-snug);
+  color: var(--color-fg);
+}
+
+.dp-h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-30);
+  line-height: var(--lh-snug);
+  color: var(--color-fg);
+}
+
+.dp-h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-24);
+  line-height: var(--lh-snug);
+  color: var(--color-fg);
+}
+
+.dp-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-14);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.dp-lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-20);
+  line-height: var(--lh-relaxed);
+  color: var(--color-fg-muted);
+}
+
+.dp-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-16);
+  line-height: var(--lh-relaxed);
+  color: var(--color-fg-muted);
+}
+
+.dp-body-strong {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-16);
+  line-height: var(--lh-relaxed);
+  color: var(--color-fg);
+}
+
+.dp-caption {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-14);
+  line-height: var(--lh-normal);
+  color: var(--color-fg-subtle);
+}
+
+.dp-quote {
+  /* "Visitar una clínica de podología en Tijuana para tratarse el pie,
+      equivale a visitar un salón de belleza para curarse una migraña." */
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-30);
+  line-height: var(--lh-snug);
+  color: var(--color-fg);
+}
+
+.dp-link {
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+.dp-link:hover { color: var(--color-brand-hover); }
