@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#FFFFFF" />
+<title>Dr. Pies · Programa de Lealtad</title>
+
+<!-- Tokens de marca Dr. Pies (colores + tipografía) -->
+<link rel="stylesheet" href="colors_and_type.css" />
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  /* Acento sutil de marca en el fondo */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at top right, rgba(200,0,0,0.04), transparent 60%),
+      radial-gradient(circle at bottom left, rgba(200,0,0,0.03), transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: max(2rem, env(safe-area-inset-top)) var(--space-6) max(2rem, env(safe-area-inset-bottom));
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--color-divider);
+    opacity: 0;
+    animation: fadeIn 0.6s ease 0.1s forwards;
+  }
+
+  .logo {
+    height: 38px;
+    width: auto;
+    display: block;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 6px 12px;
+    background: var(--color-brand-soft);
+    color: var(--color-brand);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-display);
+    font-size: var(--fs-12);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .pill .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-brand);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* ===== MAIN ===== */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-12) 0;
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-12);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-brand);
+    margin-bottom: var(--space-5);
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.25s forwards;
+  }
+
+  .check-wrap {
+    margin-bottom: var(--space-8);
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.3s forwards;
+  }
+
+  .check {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-red);
+  }
+
+  .check svg {
+    width: 26px;
+    height: 26px;
+    stroke-dasharray: 30;
+    stroke-dashoffset: 30;
+    animation: drawCheck 0.6s ease 0.7s forwards;
+  }
+
+  .greeting {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.25rem, 8.5vw, 3.25rem);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-fg);
+    margin-bottom: var(--space-4);
+    opacity: 0;
+    animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+  }
+
+  .greeting .name {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-brand);
+  }
+
+  .message {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--fs-18);
+    line-height: var(--lh-relaxed);
+    color: var(--color-fg-muted);
+    max-width: 420px;
+    opacity: 0;
+    animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  }
+
+  /* ===== VISIT CARD ===== */
+  .visit-card {
+    margin-top: var(--space-10);
+    padding: var(--space-6);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    opacity: 0;
+    animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+  }
+
+  .visit-card .meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .meta-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-12);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--color-fg-subtle);
+  }
+
+  .visit-card .date {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--fs-16);
+    color: var(--color-fg);
+  }
+
+  .visit-number {
+    text-align: right;
+  }
+
+  .visit-number .num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 2.75rem;
+    line-height: 1;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-brand);
+  }
+
+  .visit-number .meta-label {
+    margin-top: var(--space-2);
+    display: block;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    margin-top: auto;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-divider);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-display);
+    font-size: var(--fs-12);
+    font-weight: 600;
+    color: var(--color-fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    opacity: 0;
+    animation: fadeIn 0.6s ease 0.9s forwards;
+  }
+
+  footer .nfc-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  footer svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  @keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @media (max-width: 380px) {
+    .visit-card { flex-direction: column; align-items: flex-start; gap: var(--space-5); }
+    .visit-number { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <!-- Coloca el archivo del logo (dr-pies-logo.png) en la misma carpeta que este HTML -->
+    <img src="dr-pies-logo.png" alt="Dr. Pies" class="logo" />
+    <span class="pill"><span class="dot"></span>Registrada</span>
+  </header>
+
+  <main>
+    <span class="eyebrow">Programa de Lealtad</span>
+
+    <div class="check-wrap">
+      <div class="check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+    </div>
+
+    <h1 class="greeting">
+      Hola, <span class="name" id="nombre">Visitante</span>.
+    </h1>
+
+    <p class="message">
+      Gracias por registrar tu visita en Dr. Pies. Tu confianza y fidelidad significan todo para nosotros.
+    </p>
+
+    <div class="visit-card">
+      <div class="meta">
+        <span class="meta-label">Visita registrada</span>
+        <span class="date" id="fecha">—</span>
+      </div>
+      <div class="visit-number">
+        <div class="num" id="contador">01</div>
+        <span class="meta-label">Visitas</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span class="nfc-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 12c0-4 4-8 8-8s8 4 8 8-4 8-8 8"></path>
+        <path d="M8 12c0-2 2-4 4-4s4 2 4 4-2 4-4 4"></path>
+        <circle cx="12" cy="12" r="1"></circle>
+      </svg>
+      Escaneado vía NFC
+    </span>
+    <span id="hora">—</span>
+  </footer>
+
+</div>
+
+<script>
+  // 1. Nombre desde URL (?nombre=Edwin+Vargas)
+  const params = new URLSearchParams(window.location.search);
+  const nombre = params.get('nombre') || 'Visitante';
+  document.getElementById('nombre').textContent = nombre;
+
+  // 2. Fecha y hora en español
+  const ahora = new Date();
+  const fechaFmt = ahora.toLocaleDateString('es-MX', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+  const horaFmt = ahora.toLocaleTimeString('es-MX', {
+    hour: '2-digit', minute: '2-digit'
+  });
+  document.getElementById('fecha').textContent = fechaFmt;
+  document.getElementById('hora').textContent = horaFmt;
+
+  // 3. Contador de visitas (localStorage, por nombre)
+  const key = `visitas_${nombre}`;
+  const visitas = parseInt(localStorage.getItem(key) || '0') + 1;
+  localStorage.setItem(key, visitas);
+  document.getElementById('contador').textContent = String(visitas).padStart(2, '0');
+</script>
+</body>
+</html>
